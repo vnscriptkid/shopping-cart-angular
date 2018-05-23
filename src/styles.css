@@ -1,2 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~bootstrap/dist/css/bootstrap.css"
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~ag-grid/dist/styles/ag-grid.css";
+@import "~ag-grid/dist/styles/ag-theme-balham.css";
+
+/* Home Page */
+.home__item-info {
+  padding-left: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.home__cat-item {
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+
+.home__cat-item:hover {
+  background-color: #2C3E50;
+  color: #fff;
+}
+
+.home__item-image {
+  padding: 5%;
+}
+
+.home__card {
+  max-width: 400px;
+}
+
+.home__sticky-nav {
+  top: 80px;
+}
+

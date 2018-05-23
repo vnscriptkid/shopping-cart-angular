@@ -1,3 +1,57 @@
-<p>
-  home works!
-</p>
+<div class="container">
+  <div class="row">
+    <!-- Left Navigation -->
+    <div class="col-md-3 home__left-col">
+      <div class="sticky-top home__sticky-nav">
+
+        <div class="card home__left-nav">
+          <div class="card-header text-center">
+            <h3>Category</h3>
+          </div>
+          <a
+          (click)="onCategorySelect('all')"
+          class="list-group-item list-group-item-action"
+          routerLinkActive="active"
+          routerLink="/"
+          [queryParams]="{ category: 'all' }"
+          [routerLinkActiveOptions]="{exact: true}"
+          >All</a>
+          <div class="list-group list-group-flush">
+            <a
+            (click)="onCategorySelect(c.key)"
+            *ngFor="let c of categories$ | async"
+            class="list-group-item list-group-item-action"
+            routerLinkActive="active"
+            routerLink="/"
+            [queryParams]="{ category: c.key }"
+            [routerLinkActiveOptions]="{exact: true}"
+            >{{ c.name }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Product List -->
+    <div class="col">
+      <div class="card-deck">
+        <ng-template ngFor let-p [ngForOf]="filteredProducts" let-i="index">
+          <div class="card mb-4 home__card" >
+            <img class="card-img-top home__item-image" [src]="p.image" alt="Card image">
+            <div class="card-body home__item-info">
+              <h5 class="card-title">{{ p.title }}</h5>
+              <p class="card-text">{{ p.price | currency }}</p>
+            </div>
+            <div class="card-footer">
+              <a (click)="onCartClick(p)" class="btn btn-success btn-block btn-lg">ADD TO CART</a>
+            </div>
+          </div>
+          <div *ngIf="(i + 1) % 2 === 0" class="w-100"></div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

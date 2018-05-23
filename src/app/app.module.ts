@@ -1,3 +1,4 @@
+import { CartService } from './cart.service';
 import { CustomMaxDirective } from './../custom-max-validator.directive';
 import { CustomMinDirective } from './custom-min-validator.directive';
 import { ProductService } from './product.service';
@@ -14,6 +15,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabase, AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AgGridModule } from 'ag-grid-angular';
 
 import { LoginComponent } from './login/login.component';
 import { AppComponent } from './app.component';
@@ -65,6 +67,7 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    AgGridModule.withComponents([]),
     FormsModule,
     CustomFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
@@ -79,7 +82,8 @@ const routes: Routes = [
     AuthGuardService,
     UserService,
     CategoryService,
-    ProductService
+    ProductService,
+    CartService
   ],
   bootstrap: [AppComponent]
 })

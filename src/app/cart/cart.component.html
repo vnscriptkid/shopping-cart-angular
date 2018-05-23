@@ -1,3 +1,36 @@
 <p>
   cart works!
 </p>
+
+<div class="container">
+  <table class="table table-primary table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Product</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let i of cartItems">
+        <td>{{ i.title }}</td>
+        <td>
+
+          <div class="btn-group" role="group">
+            <button (click)="increaseQuantity(i)" type="button" class="btn btn-success">+</button>
+            <button type="button" class="btn btn-success">{{ i.quantity }}</button>
+            <button (click)="decreaseQuantity(i)" type="button" class="btn btn-success">-</button>
+          </div>
+        </td>
+        <td>{{ i.price | currency }}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th ></th>
+        <th ></th>
+        <th >{{ totalPrice | currency }}</th>
+      </tr>
+    </tfoot>
+  </table>
+</div>

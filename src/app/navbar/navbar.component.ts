@@ -1,3 +1,5 @@
+import { take } from 'rxjs/operators';
+import { CartService } from './../cart.service';
 import { AdminGuardService } from './../admin-guard.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -11,8 +13,21 @@ import { Observable } from 'rxjs/Observable';
 })
 export class NavbarComponent implements OnInit {
   isAdmin: Observable<boolean>;
-  constructor(public authService: AuthService, private adminGuard: AdminGuardService) {
+  totalCartItems = 0;
+
+  constructor(
+    public authService: AuthService,
+    private adminGuard: AdminGuardService,
+    private cartService: CartService
+  ) {
     this.isAdmin = adminGuard.canActivate();
+    cartService.getCart().then(success => {
+      // console.log('getCart: ', success);
+      success.subscribe((result: any) => {
+        console.log('cart now: ', result);
+        this.totalCartItems = Object.keys(result.items).length;
+      });
+    });
   }
 
   ngOnInit() {
